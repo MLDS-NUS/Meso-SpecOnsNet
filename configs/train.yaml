@@ -7,7 +7,7 @@ defaults:
   - data: kdv
   - model: s_onsagernet
   - callbacks: default
-  - logger: [csv, wandb] # set logger here or use command line (e.g. `python train.py logger=tensorboard`)
+  - logger: csv # or [csv, wandb] to also log for wandb
   - trainer: ddp
   - paths: default
   - extras: default
