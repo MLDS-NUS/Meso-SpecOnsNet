@@ -1,0 +1,16 @@
+# @package _global_
+
+# to execute this experiment run:
+# python src/train.py experiment=ac_2d/ac_2d
+
+defaults:
+  - ac_2d/share
+  - override /model: ac_2d
+
+logger:
+  wandb:
+    notes: "ac_2d"
+
+hydra:
+  run:
+    dir: ${paths.log_dir}/${task_name}/runs/ac_2d/ac_2d

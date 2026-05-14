@@ -1,0 +1,13 @@
+# @package model.dynamics
+_target_: src.models.components.spectral_onsagernet_2d.SpectralOnsagerNet2d
+
+learn_M: true
+learn_W: true
+
+Lx: 6.283185307179586 # 2π
+Ly: 6.283185307179586 # 2π
+Nx: 128
+Ny: 128
+
+potential: ???
+method: euler

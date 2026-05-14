@@ -1,0 +1,5 @@
+defaults:
+  - spectral_onsagernet/potential/ac@potential
+
+_target_: src.models.components.dynamics.spectral_onsagernet.SpectralOnsagerNetAllenCahn
+method: sbdf1

@@ -1,0 +1,36 @@
+# @package model.dynamics
+# Classical OnsagerNet with low-rank dissipation + conservation matrices.
+# Treats the Nx-point PDE grid as an Nx-dimensional ODE.
+#
+# Dynamics: du/dt = -(M(u) + W(u)) ∇V(u)
+#   V  — coercive MLP potential (scalar)
+#   M  — low-rank SPD dissipation  M(u) = β·I + B(u)·B(u)ᵀ   rank=8
+#   W  — low-rank anti-symmetric  W(u) = B(u)·Cᵀ − C·B(u)ᵀ  rank=4
+
+_target_: src.models.components.dynamics.onsagernet.OnsagerNet1d
+
+Nx: 256
+n_channels: 1
+step_method: euler
+
+potential:
+  _target_: src.models.components.dynamics.onsagernet.CoercivePotential
+  in_dim: 256
+  hidden_dims: [256, 256, 256]
+  alpha_init: 0.01
+  act_name: tanh
+
+dissipation:
+  _target_: src.models.components.dynamics.onsagernet.LowRankDissipation
+  in_dim: 256
+  rank: 8
+  hidden_dims: [256, 256]
+  beta: 1.0e-3
+  act_name: tanh
+
+conservation:
+  _target_: src.models.components.dynamics.onsagernet.LowRankConservation
+  in_dim: 256
+  rank: 4
+  hidden_dims: [256, 256]
+  act_name: tanh

@@ -1,0 +1,16 @@
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=fene/s_onsagernet
+
+defaults:
+  - fene/share
+  - override /model: s_onsagernet
+
+logger:
+  wandb:
+    notes: "s_onsagernet"
+
+hydra:
+  run:
+    dir: ${paths.log_dir}/${task_name}/runs/fene/s_onsagernet

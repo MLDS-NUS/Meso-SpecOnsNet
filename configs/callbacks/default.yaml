@@ -1,0 +1,29 @@
+defaults:
+  - basic
+  - model_checkpoint
+  - early_stopping
+  # - viz/rollout@_here_
+  - viz/pred@_here_
+
+model_checkpoint:
+  dirpath: ${paths.output_dir}/checkpoints
+  filename: "epoch_{epoch:03d}"
+  monitor: "valid/loss"
+  mode: "min"
+  save_last: true
+  auto_insert_metric_name: true
+
+model_checkpoint_final_loss:
+  _target_: src.callbacks.best_finite_checkpoint.BestFiniteCheckpoint
+  monitor: "valid/final_loss"
+  dirpath: ${paths.output_dir}/checkpoints
+  filename: "best_final_loss"
+  mode: "min"
+
+early_stopping:
+  monitor: "valid/loss"
+  patience: 5
+  mode: "min"
+
+model_summary:
+  max_depth: -1

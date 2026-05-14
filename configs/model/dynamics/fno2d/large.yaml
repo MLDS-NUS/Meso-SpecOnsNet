@@ -1,0 +1,6 @@
+# @package model.dynamics
+defaults:
+  - fno2d/default
+
+n_modes: 24 # 12 -> 24
+hidden_channels: 32 # 16 -> 32

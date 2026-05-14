@@ -1,0 +1,12 @@
+_target_: src.data.DedalusDynamicsDataModule
+
+dyn_type: ???
+data_files: ???
+
+split_ratio: [0.7, 0.2, 0.1]
+
+batch_size: 32
+chunk_length: 11
+
+num_workers: 4
+pin_memory: true

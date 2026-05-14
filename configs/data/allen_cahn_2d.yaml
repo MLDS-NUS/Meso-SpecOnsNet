@@ -1,0 +1,13 @@
+# @package _global_
+
+defaults:
+  - dedalus_share@data
+
+data:
+  dyn_type: allen_cahn_2d
+  data_files: ${paths.data_dir}/allen_cahn_2d/*.hdf5
+
+  batch_size: 8
+
+tags:
+  - allen_cahn_2d

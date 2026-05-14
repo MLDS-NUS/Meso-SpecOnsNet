@@ -1,0 +1,16 @@
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=ac/ac_realV
+
+defaults:
+  - ac/share
+  - override /model: ac_realV
+
+logger:
+  wandb:
+    notes: "ac_realV"
+
+hydra:
+  run:
+    dir: ${paths.log_dir}/${task_name}/runs/ac/ac_realV

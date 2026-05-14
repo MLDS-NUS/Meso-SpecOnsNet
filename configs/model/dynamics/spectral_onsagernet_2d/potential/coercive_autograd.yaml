@@ -1,0 +1,33 @@
+# package model.dynamics.potential
+_target_: src.models.components.spectral_onsagernet_2d.potential.coercive_autograd.CoerciveAutogradPotential
+Lx: 6.283185307179586 # 2π
+Ly: 6.283185307179586 # 2π
+Nx: 128
+Ny: 128
+
+F_module:
+  _target_: src.models.components.utils.mlp.Mlp
+  in_dim: 1
+  hidden_dims:
+    - 64
+    - 64
+    - 64
+  out_dim: 1
+  act_name: silu
+  final_act_name: sine
+  final_bias: false
+
+v_module:
+  _target_: src.models.components.utils.mlp.Mlp
+  in_dim: 256 # v_truncate * v_truncate = 16 * 16
+  hidden_dims:
+    - 64
+    - 64
+    - 64
+  out_dim: 1
+  act_name: silu
+  final_act_name: sine
+  final_bias: true
+  complex: true
+
+v_truncate: 16

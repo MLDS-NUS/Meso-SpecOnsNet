@@ -1,0 +1,20 @@
+# package model.dynamics.potential
+_target_: src.models.components.dynamics.spectral_onsagernet.potential.coercive_autograd_v4.CoerciveAutogradPotentialV4
+Lx: 6.283185307179586 # 2pi, pi=3.141592653589793
+Nx: 256
+
+dvdf_h_module:
+  _target_: src.models.components.utils.mlp_skip.MlpSkip
+  in_dim: 258 # 2 * ((Nx // 2) + 1)
+  hidden_dims:
+    - 512
+    - 512
+    - 512
+  out_dim: 258
+  act_name: relu # setting as silu/softplus does not help (run 434/437 compared to 432)
+  final_sine: true
+  final_bias: false
+  final_zero: false # setting as true does not help (run 438 compared to 432)
+
+positive_a: true
+positive_b: true

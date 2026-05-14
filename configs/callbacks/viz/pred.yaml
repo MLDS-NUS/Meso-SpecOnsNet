@@ -1,0 +1,3 @@
+pred:
+  _target_: src.callbacks.viz.pred.PredViz
+  every_n_validation: 5

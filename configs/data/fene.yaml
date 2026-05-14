@@ -1,0 +1,11 @@
+# @package _global_
+
+defaults:
+  - dedalus_share@data
+
+data:
+  dyn_type: fene
+  data_files: ${paths.data_dir}/fene/*.hdf5
+
+tags:
+  - fene

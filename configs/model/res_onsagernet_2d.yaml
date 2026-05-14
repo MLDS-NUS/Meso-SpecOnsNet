@@ -1,0 +1,3 @@
+defaults:
+  - onsagernet_base
+  - override dynamics: res_onsagernet_2d

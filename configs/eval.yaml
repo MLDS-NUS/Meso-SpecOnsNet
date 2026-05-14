@@ -1,0 +1,42 @@
+# @package _global_
+
+# Evaluation configuration
+# Usage:
+#   pixi run python src/eval.py ckpt_path=/path/to/checkpoint.ckpt
+#   pixi run python src/eval.py experiment=convdiff1d ckpt_path=/path/to/checkpoint.ckpt
+#   pixi run python src/eval.py experiment=convdiff1d ckpt_path=/path/to/checkpoint.ckpt callbacks=convdiff1d
+
+defaults:
+  - _self_
+  - data: convdiff1d_datamodule  # Override with your datamodule
+  - model: meso_onsagernet       # Override with your model
+  - callbacks: basic             # Use basic callbacks; override for visualization
+  - logger: null                 # Set to wandb/tensorboard for logging visualizations
+  - trainer: default
+  - paths: default
+  - extras: default
+  - hydra: default
+
+  # Experiment configs can override all above
+  - experiment: null
+
+task_name: "eval"
+
+tags: ["eval"]
+
+# Checkpoint path - REQUIRED
+# Pass via command line: ckpt_path=/path/to/checkpoint.ckpt
+ckpt_path: ???
+
+# Random seed for reproducibility
+seed: 42
+
+# Whether to also run test evaluation (if test dataloader exists)
+run_test: false
+
+# Path to save metrics JSON (optional)
+# Example: output_path=./eval_results.json
+output_path: null
+
+# Optimized metric to report (optional)
+optimized_metric: null

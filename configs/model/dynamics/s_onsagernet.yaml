@@ -1,0 +1,3 @@
+defaults:
+  - spectral_onsagernet/default
+  - spectral_onsagernet/potential/v7@potential

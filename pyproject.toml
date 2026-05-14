@@ -1,0 +1,120 @@
+[project]
+name = "Meso-SpecOnsNet"
+requires-python = ">=3.12,<3.13"
+version = "0.1.0"
+dependencies = [
+  "einops>=0.8.2,<0.9",
+  "h5py>=3.15.0,<4",
+  "hydra-core>=1.3.2,<2",
+  "hydra-colorlog>=1.2.0,<2",
+  "ipykernel>=7.2.0,<8",
+  "matplotlib>=3.10.6,<4",
+  "pandas>=2.3.3,<3",
+  "rich>=15.0.0,<16",
+  "rootutils>=1.0.7,<2",
+  "seaborn>=0.13.2,<0.14",
+  "wandb>=0.26.1,<0.27",
+  "scipy>=1.16.3,<2",
+  "neuraloperator>=2.0.0,<3",
+  "tabulate>=0.10.0,<0.11",
+  "tensordict>=0.12.1,<0.13",
+  "scikit-learn>=1.7.2,<2",
+  "hydra-optuna-sweeper>=1.2.0,<2",
+  "ipywidgets>=8.1.8,<9",
+  "huggingface-hub>=1.14.0,<2",
+]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[tool.pixi.feature.gpu]
+system-requirements = { cuda = "12.0" }
+
+[tool.pixi.feature.gpu.pypi-dependencies]
+torch = { version = ">=2.9.0,<3", index = "https://download.pytorch.org/whl/cu126" }
+torchvision = { version = ">=0.24.0,<1", index = "https://download.pytorch.org/whl/cu126" }
+lightning = { version = ">=2.5.6" }
+torchmetrics = { version = ">=1.8.2,<2" }
+tensordict = { version = ">=0.10.0,<1" }
+
+[tool.pixi.environments]
+gpu = { features = ["gpu"] }
+default = { features = ["gpu"] }
+
+[tool.pixi.dependencies]
+dedalus = ">=3.0.4,<4"
+pixi-kernel = ">=0.7.1,<0.8"
+
+[tool.pixi.activation.env]
+OMP_NUM_THREADS = "1"     # recommended by dedalus
+NUMEXPR_MAX_THREADS = "1" # recommended by dedalus
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.pytest.ini_options]
+addopts = [
+  "--color=yes",
+  "--durations=0",
+  "--strict-markers",
+  "--doctest-modules",
+]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::UserWarning"]
+log_cli = true
+markers = ["slow: slow tests"]
+minversion = "6.0"
+testpaths = "tests/"
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: nocover",
+  "raise NotImplementedError",
+  "raise NotImplementedError()",
+  "if __name__ == .__main__.:",
+]
+
+
+[tool.ruff]
+exclude = ["references/*", "deprecated/*"]
+
+target-version = "py312"
+line-length = 120
+indent-width = 4
+
+[tool.ruff.lint.isort]
+known-third-party = ["wandb"]
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 80
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[tool.ruff.lint]
+select = [
+  # pycodestyle
+  "E",
+  # Pyflakes
+  "F",
+  # pyupgrade
+  "UP",
+  # flake8-bugbear
+  "B",
+  # flake8-simplify
+  "SIM",
+  # isort
+  "I",
+]
+ignore = [
+  # "E402", # module level import not at top of file
+  # "E501", # line too long
+  # "E741", # ambiguous variable name
+  "B905", # Do not assert for zip
+  "F541", # f-string without variables
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "E402"]

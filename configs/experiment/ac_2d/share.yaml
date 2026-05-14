@@ -1,0 +1,8 @@
+# @package _global_
+defaults:
+  - override /data: allen_cahn_2d
+
+task_name: official
+
+model:
+  dt: 1e-3 # save_every (25) * dt (4e-5) in data_generation/allen_cahn_2d/generate.py

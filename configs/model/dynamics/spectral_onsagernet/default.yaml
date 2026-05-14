@@ -1,0 +1,8 @@
+# @package model.dynamics
+_target_: src.models.components.dynamics.spectral_onsagernet.SpectralOnsagerNet1d
+
+learn_M: true
+learn_W: true
+
+potential: ???
+method: euler

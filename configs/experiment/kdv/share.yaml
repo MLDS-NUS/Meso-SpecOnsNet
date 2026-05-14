@@ -1,0 +1,8 @@
+# @package _global_
+defaults:
+  - override /data: kdv
+
+task_name: official
+
+model:
+  dt: 1e-3

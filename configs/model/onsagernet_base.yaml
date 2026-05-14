@@ -1,0 +1,21 @@
+defaults:
+  - dynamics: ???
+  - optimizer: adam
+  - scheduler: reduce_lr_on_plateau
+
+_target_: src.models.meso_module.MesoLitModule
+
+# Evolution parameters
+dt: 1e-3 # Time step for evolution — matches data saved Δt
+
+accumulated_nsteps: 3
+# detach_probability: 0.0
+# intermediate_losses: true
+
+# Loss configuration
+loss_fn: "mse" # Options: "mse", "mae", "huber"
+
+# Compile model for faster training with pytorch 2.0
+compile: true
+
+reg_weight: null

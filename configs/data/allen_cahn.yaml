@@ -1,0 +1,11 @@
+# @package _global_
+
+defaults:
+  - dedalus_share@data
+
+data:
+  dyn_type: allen_cahn
+  data_files: ${paths.data_dir}/allen_cahn/*.hdf5
+
+tags:
+  - allen_cahn

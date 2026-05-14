@@ -1,0 +1,9 @@
+# @package _global_
+defaults:
+  - override /data: fene
+
+task_name: official
+
+model:
+  dt: 5e-3
+  accumulated_nsteps: 3

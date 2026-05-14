@@ -1,0 +1,9 @@
+# @package _global_
+defaults:
+  - override /data: fput
+
+task_name: official
+
+model:
+  dt: 1e-2
+  accumulated_nsteps: 5

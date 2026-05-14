@@ -1,0 +1,2 @@
+from .spectral_onsagernet_2d import SpectralOnsagerNet2d
+from .spectral_onsagernet_allen_cahn_2d import SpectralOnsagerNetAllenCahn2d

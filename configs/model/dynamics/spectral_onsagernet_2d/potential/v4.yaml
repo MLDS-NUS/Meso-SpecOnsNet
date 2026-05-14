@@ -1,0 +1,22 @@
+# package model.dynamics.potential
+_target_: src.models.components.spectral_onsagernet_2d.potential.coercive_autograd_v4.CoerciveAutogradPotentialV4
+Lx: 6.283185307179586 # 2π
+Ly: 6.283185307179586 # 2π
+Nx: 128
+Ny: 128
+
+dvdf_h_module:
+  _target_: src.models.components.utils.mlp_skip.MlpSkip
+  in_dim: 16640 # 2 * Nx * (Ny // 2 + 1) = 2 * 128 * 65
+  hidden_dims:
+    - 512
+    - 512
+    - 512
+  out_dim: 16640
+  act_name: relu
+  final_sine: true
+  final_bias: false
+  final_zero: false
+
+positive_a: true
+positive_b: true

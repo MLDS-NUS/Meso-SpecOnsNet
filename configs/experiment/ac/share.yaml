@@ -1,0 +1,8 @@
+# @package _global_
+defaults:
+  - override /data: allen_cahn
+
+task_name: official
+
+model:
+  dt: 1e-3

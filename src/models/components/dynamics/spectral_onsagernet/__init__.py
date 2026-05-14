@@ -1,0 +1,3 @@
+from .spectral_onsagernet import SpectralOnsagerNet1d
+from .spectral_onsagernet_allen_cahn import SpectralOnsagerNetAllenCahn
+from .spectral_onsagernet_kdv import SpectralOnsagerNetKdV

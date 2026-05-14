@@ -1,0 +1,4 @@
+# package model.dynamics.potential
+_target_: src.models.components.dynamics.spectral_onsagernet.potential.allen_cahn.AllenCahnPotential
+Lx: 6.283185307179586 # 2pi, pi=3.141592653589793
+Nx: 256

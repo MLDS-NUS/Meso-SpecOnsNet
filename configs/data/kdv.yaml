@@ -1,0 +1,11 @@
+# @package _global_
+
+defaults:
+  - dedalus_share@data
+
+data:
+  dyn_type: kdv
+  data_files: ${paths.data_dir}/kdv/*.hdf5
+
+tags:
+  - kdv

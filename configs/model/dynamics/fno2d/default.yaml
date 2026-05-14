@@ -1,0 +1,8 @@
+# @package model.dynamics
+_target_: src.models.components.FNO2dBaseline
+
+n_modes: 12
+in_channels: 1
+out_channels: 1
+hidden_channels: 16
+step_method: euler
