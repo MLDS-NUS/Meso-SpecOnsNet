@@ -24,7 +24,9 @@ paper **Hypothesis-driven construction of mesoscopic dynamics**.
 The installation requires a linux-64 platform with CUDA>=12.6
 
 ```bash
-# clone this repository and then run:
+# clone this repository
+# install pixi (https://pixi.prefix.dev/latest/)
+# and then run:
 pixi install
 ```
 
