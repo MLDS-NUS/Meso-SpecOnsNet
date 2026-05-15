@@ -8,12 +8,12 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 SUBFOLDERS=(
-    # prediction
+    prediction
     potential_evolution
     potential_scatter
     component_scaling
-    # potential_variation_dt_scaling
-    # prediction_table
+    potential_variation_dt_scaling
+    prediction_table
 )
 
 # Use the pixi-kernel Python kernel: it auto-discovers pixi.toml/pyproject.toml

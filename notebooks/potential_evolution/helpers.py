@@ -119,7 +119,7 @@ def plot_V_evolution(V_learned: np.ndarray, out_path: Path, n_plot: int = 10) ->
     fig, ax = plt.subplots(figsize=(6, 4))
     for plot_i, traj_i in enumerate(traj_idx):
         ax.plot(steps, V_learned[traj_i], color=colors[plot_i], linewidth=1.2, alpha=0.85)
-    ax.set_xlabel("Time step", fontsize=14)
+    ax.set_xlabel("Prediction step", fontsize=14)
     ax.set_ylabel(r"Learned potential $V_\theta(u(t))$", fontsize=14)
     ax.grid(True, alpha=0.3)
     plt.tight_layout()
@@ -138,8 +138,8 @@ def plot_V_change(V_learned: np.ndarray, out_path: Path, n_plot: int = 10) -> No
     for plot_i, traj_i in enumerate(traj_idx):
         vl = V_learned[traj_i]
         ax.plot(steps, vl - vl[0], color=colors[plot_i], linewidth=1.2, alpha=0.85)
-    ax.set_xlabel("Time step", fontsize=12)
-    ax.set_ylabel(r"$V_\theta(u(t)) - V_\theta(u(0))$", fontsize=12)
+    ax.set_xlabel("Prediction step", fontsize=14)
+    ax.set_ylabel(r"$V_\theta(u(t)) - V_\theta(u(0))$", fontsize=14)
     ax.grid(True, alpha=0.3)
     plt.tight_layout()
     out_path.parent.mkdir(parents=True, exist_ok=True)
