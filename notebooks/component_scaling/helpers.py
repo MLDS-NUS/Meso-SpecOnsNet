@@ -276,6 +276,52 @@ def plot_components_scaling(
     plt.show()
 
 
+def plot_V0_scaling(
+    a_values: np.ndarray,
+    dV0: np.ndarray,
+    slopes: np.ndarray,
+    intercepts: np.ndarray,
+    r2: np.ndarray,
+    traj_idxs: list[int],
+    display_name: str,
+    a_min: float,
+    a_max: float,
+    a_fit_max: float,
+    out_path: Path,
+) -> None:
+    """Plot only the V_0 component scaling (single panel, markers + fit lines)."""
+    palette = sns.color_palette("deep")
+    fig, ax = plt.subplots(figsize=(6, 4))
+
+    for k, _ti in enumerate(traj_idxs):
+        color = palette[k % len(palette)]
+        y = np.abs(dV0[:, k])
+        pos = y > 0
+        label = rf"$u_0$ #{k + 1}  ($\alpha$={slopes[k]:.2f}, $R^2$={r2[k]:.3f})"
+        ax.plot(a_values[pos], y[pos], "o", color=color, markersize=3.0, label=label)
+        if np.isfinite(slopes[k]):
+            ys = np.exp(intercepts[k]) * a_values ** slopes[k]
+            ax.plot(a_values, ys, "-", color=color, lw=1.0, alpha=0.6)
+
+    ax.axvline(1.0, color="k", lw=0.6, linestyle=":")
+    if a_fit_max < a_max:
+        ax.axvline(a_fit_max, color="gray", lw=0.8, linestyle="--", label=rf"fit window: $a<{a_fit_max}$")
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.set_xlim(a_min, a_max)
+    ax.set_ylim(bottom=1e-2)
+    ax.set_xlabel(r"scalar $a$", fontsize=14)
+    ax.set_ylabel(r"$|V_0(a\,u_0) - V_0(0)|$", fontsize=14)
+    ax.set_title(rf"{display_name} — $V_0$ scaling", fontsize=14)
+    ax.grid(True, which="both", alpha=0.3)
+    ax.legend(fontsize=10, loc="upper left")
+
+    plt.tight_layout()
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(out_path, bbox_inches="tight")
+    plt.show()
+
+
 def plot_Fmap(
     potential,
     test_data: torch.Tensor,
